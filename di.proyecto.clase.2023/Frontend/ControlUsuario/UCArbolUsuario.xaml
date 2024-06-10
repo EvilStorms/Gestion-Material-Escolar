@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="di.proyecto.clase._2023.Frontend.ControlUsuario.UCArbolUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ent ="clr-namespace:di.proyecto.clase._2023.Backend.Modelo"
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:di.proyecto.clase._2023.Frontend.ControlUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Left" Width="400">
+            <TreeView x:Name="treeGrupos" ItemsSource="{Binding listaGrupo}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type ent:Grupo}" ItemsSource="{Binding Usuarios}">
+                        <StackPanel Orientation="Horizontal">
+                            <mat:PackIcon Kind="PeopleGroup"/>
+                            <TextBlock Text="{Binding Nombre}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type ent:Usuario}" ItemsSource="{Binding Salida}">
+                        <StackPanel Orientation="Horizontal">
+                            <mat:PackIcon Kind="PeopleGroupOutline"/>
+                            <TextBlock Text="{Binding Nombre}"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Apellido1}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Grid>
+        <Grid>
+            
+        </Grid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,46 @@
+﻿<mah:MetroWindow  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="di.proyecto.clase._2023.Frontend.Dialogos.DialogoModeloArticuloMVVM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:di.proyecto.clase._2023.Frontend.Dialogos"
+        mc:Ignorable="d"
+        Title="DialogoModeloArticulo" Height="450" Width="800">
+    <StackPanel Margin="0,-1,0,1">
+        <TextBlock Text="Añada un modelo articulo" Foreground="Blue" FontSize="45" 
+                   TextAlignment="Center" Width="800" Background="Transparent" Height="58"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Nombre *" Margin="10,10,10,10"/>
+                <TextBox Height="75" x:Name="txtNombre" Margin="10,0,10,20"
+                         Style="{StaticResource MaterialDesignTextBox}" Text="{Binding modeloArticulo.Nombre}"/>
+                <TextBlock Text="Modelo" HorizontalAlignment="Left" Margin="10,0,10,10"/>
+                <TextBox Height="32" Margin="10,0,10,20" x:Name="txtModelo"
+                         Style="{StaticResource MaterialDesignTextBox}" Text="{Binding modeloArticulo.Modelo}"/>
+                <TextBlock Text="Tipo *"  HorizontalAlignment="Left" Margin="10,0,10,10"/>
+                <ComboBox Height="32" x:Name="comboTipoArticulo" Margin="10,0,10,20" ItemsSource="{Binding listaTipoArticulo}"
+                          DisplayMemberPath="Nombre" Style="{StaticResource MaterialDesignComboBox}" SelectedItem="{Binding modeloArticulo.TipoNavigation}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Marca *"  Margin="10,10,10,10"/>
+                <TextBox Height="32" Margin="10,0,10,20" x:Name="txtMarca"
+                         Style="{StaticResource MaterialDesignTextBox}" Text="{Binding modeloArticulo.Marca}"/>
+                <TextBlock Text="Descripcion"  Margin="10,0,10,10"/>
+                <TextBox Height="104" Margin="10,0,10,20" x:Name="txtDescripcion" 
+                         Style="{StaticResource MaterialDesignTextBox}" Text="{Binding modeloArticulo.Descripcion}"/>
+            </StackPanel>
+
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="131">
+            <Button Grid.Column="0" Content="Guardar" Click="BotonGuardar_Click"  x:Name="BotonGuardar" Width="84" Height="36" Margin="0,0,10,0"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+            <Button Grid.Column="1" Content="Cancelar" Click="BotonCancelar_Click" x:Name="BotonCancelar" Width="88" Height="36" Margin="0,0,10,0"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+        </StackPanel>
+    </StackPanel>
+</mah:MetroWindow>

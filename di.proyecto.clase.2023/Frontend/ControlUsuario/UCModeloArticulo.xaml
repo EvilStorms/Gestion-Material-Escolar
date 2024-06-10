@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="di.proyecto.clase._2023.Frontend.ControlUsuario.UCModeloArticulo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:di.proyecto.clase._2023.Frontend.ControlUsuario" xmlns:modelo="clr-namespace:di.proyecto.clase._2023.Backend.Modelo" d:DataContext="{d:DesignInstance Type=modelo:Articulo}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1200">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Text="LISTADO DE MODELOS DE ARTICULO" FontSize="24" Margin="10"/>
+            <CheckBox Grid.Row="1" Content="Agrupar por marca: " Margin="20,10,10,10" x:Name="chkAgrupaMarca" Checked="chkAgrupaMarca_Checked" Unchecked="chkAgrupaMarca_Unchecked"/>
+            <CheckBox Grid.Row="1" Grid.Column="1" Content="Agrupar por tipo: " Margin="20,10,10,10" x:Name="chkAgrupaTipo" Checked="chkAgrupaTipo_Checked" Unchecked="chkAgrupaTipo_Unchecked"/>
+            <TextBlock Text="Filtrar por tipo: " Grid.Column="2" Grid.Row="1" FontSize="14" Foreground="White" VerticalAlignment="Center"/>
+            <ComboBox x:Name="comboFiltroTipo" Grid.Column="3" Grid.Row="1" Width="200" Margin="10" ItemsSource="{Binding listaTipoArticulo}" DisplayMemberPath="Nombre" SelectionChanged="comboFiltroTipo_SelectionChanged" SelectedItem="{Binding tipoSeleccionado}"/>
+            <TextBox x:Name="txtBuscador" Grid.Row="1" Grid.Column="4" Width="300" Margin="10,10,10,10" 
+                     TextChanged="txtBuscador_TextChanged" mat:HintAssist.Hint="Nombre del modelo articulo" 
+                     Style="{StaticResource MaterialDesignTextBox}" FontSize="16" Text="{Binding nombreBuscado, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="quitarFiltros" Click="quitarFiltros_Click" Content="Quitar Filtros" Grid.Column="5" Grid.Row="1" Margin="10,10,10,10"/>
+            <Separator VerticalAlignment="Bottom" Margin="5,0,5,0" Grid.ColumnSpan="4" Grid.Row="1"/>
+        </Grid>
+        <Grid>
+            <DataGrid x:Name="dgModeloArticulo" AutoGenerateColumns="False"
+                  ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding listaModelos}">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="Editar" Header="Editar" Click="Editar_Click"/>
+                        <MenuItem x:Name="Borrar" Header="Borrar" Click="Borrar_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="NOMBRE" Binding="{Binding Nombre}"/>
+                    <DataGridTextColumn Header="MARCA" Binding="{Binding Marca}"/>
+                    <DataGridTextColumn Header="MODELO" Binding="{Binding Modelo}"/>
+                    <DataGridTextColumn Header="TIPO DE ARTICULO" 
+                                        Binding="{Binding TipoNavigation.Nombre}"/>
+                    <DataGridTextColumn Header="DESCRIPCION" Binding="{Binding Descripcion}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+    </DockPanel>
+</UserControl>

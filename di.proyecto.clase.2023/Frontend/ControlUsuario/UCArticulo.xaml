@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="di.proyecto.clase._2023.Frontend.ControlUsuario.UCArticulo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:di.proyecto.clase._2023.Frontend.ControlUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Text="LISTADO DE ARTICULOS" FontSize="24" Margin="10"/>
+            <CheckBox Grid.Row="1" Content="Agrupar por espacio: " Margin="20,10,10,10" x:Name="chkAgrupaEspacio" Checked="chkAgrupaEspacio_Checked" Unchecked="chkAgrupaEspacio_Unchecked" />
+            <CheckBox Grid.Row="1" Grid.Column="1" Content="Agrupar por modelo articulo: " Margin="20,10,10,10" x:Name="chkAgrupaModeloArt" Checked="chkAgrupaModeloArt_Checked" Unchecked="chkAgrupaModeloArt_Unchecked"/>
+            <Separator VerticalAlignment="Bottom" Margin="5,0,5,0" Grid.ColumnSpan="4" Grid.Row="1"/>
+        </Grid>
+        <Grid>
+            <DataGrid x:Name="dgArticulo" AutoGenerateColumns="False"
+                      ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding listaArticulos}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="NOMBRE" Binding="{Binding ModeloNavigation.Nombre}"/>
+                    <DataGridTextColumn Header="NUMERO DE SERIE" Binding="{Binding Numserie}"/>
+                    <DataGridTextColumn Header="ESTADO" Binding="{Binding Estado}"/>
+                    <DataGridTextColumn Header="ESPACIO" Binding="{Binding EspacioNavigation.Nombre}"/>
+                    <DataGridTextColumn Header="FECHA ALTA" Binding="{Binding Fechaalta}"/>
+                    <DataGridTemplateColumn Header="USUARIO ALTA" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding UsuarioaltaNavigation.Apellido1}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding UsuarioaltaNavigation.Nombre}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="DEPARTAMENTO" Binding="{Binding DepartamentoNavigation.Nombre}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

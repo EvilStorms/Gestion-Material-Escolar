@@ -1,0 +1,91 @@
+﻿<mah:MetroWindow x:Class="di.proyecto.clase._2023.Frontend.Dialogos.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:di.proyecto.clase._2023.Frontend.Dialogos"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Login" Height="500" Width="800">
+    <Grid Background="#04113e" Margin="0,0,0,-73">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/Imagenes/escudologin5.png" Grid.Column="0"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Margin="0,50,0,20" Height="104" Width="250">
+                <TextBlock Text="Welcome Folk" FontSize="40" Width="250"/>
+                <TextBlock Text="Welcome. Please login with your personal account information" FontSize="15" Width="220" Height="50" Margin="10" TextWrapping="WrapWithOverflow"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Width="251">
+                <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="250" Height="28">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Imagenes/googleplus.png" Height="20" Width="53"/>
+                        <TextBlock Text="Sign in with Google" FontSize="15"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Margin="20" Orientation="Horizontal">
+                <Separator Width="110" Margin="55,0,0,0"/>
+                <TextBlock Text="OR" Margin="5" Width="20"/>
+                <Separator Width="110"/>
+            </StackPanel>
+            <StackPanel Width="250">
+                <TextBox
+                    x:Name="txtNombreUsuario"
+                    mat:HintAssist.Hint="Nombre de usuario"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Height="45" Width="250" />
+            </StackPanel>
+            <StackPanel Height="16" Width="250">
+
+            </StackPanel>
+            <StackPanel Width="250">
+                <PasswordBox
+                     x:Name="passClaveAcceso"
+                     mat:HintAssist.Hint="Contraseña"
+                     mat:PasswordBoxAssist.Password="{Binding Password2, Mode=TwoWay}"
+                     mat:TextFieldAssist.HasClearButton="True"
+                     IsEnabled="{Binding ElementName=RevealPasswordFloatingEnabled, Path=IsChecked}"
+                     Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}" />
+            </StackPanel>
+            <Grid Height="35" Width="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="0"
+                     Content="Remember me"
+                     Style="{StaticResource MaterialDesignCheckBox}"
+                     Tag="True" Width="250" Grid.Column="0">
+                    <CheckBox.IsChecked>
+                        <Binding
+                            Path="Tag"
+                            RelativeSource="{RelativeSource Self}">
+                        </Binding>
+                    </CheckBox.IsChecked>
+                </CheckBox>
+                <TextBlock Text="Forgot password?" Margin="29,10,0,0" Grid.Column="1"  />
+            </Grid>
+            <Grid Width="251">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnLogin" Click="btnLogin_Click" IsDefault="True" Style="{StaticResource MaterialDesignFlatAccentBgButton}"  Margin="0,10,30,0" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Get Start" FontSize="15" Width="62"/>
+                    </StackPanel>
+                </Button>
+                <Button
+                    Grid.ColumnSpan="1"
+                    Content="Register"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                    ToolTip="MaterialDesignOutlinedButton" Grid.Column="1" Margin="32,10,0,0" />
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
